@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "397723869459",
+    "firebase_url": "https://ysanchishopy.firebaseio.com",
+    "project_id": "ysanchishopy",
+    "storage_bucket": "ysanchishopy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397723869459:android:94f88f76ab3a4395abbae6",
+        "android_client_info": {
+          "package_name": "com.ysanchishopy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397723869459-e32n0e6cd6ansf8go1jm3vfv96iuqe1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRKt9aaAkr97xpzGiwO8f3JFlQwguYU5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397723869459-e32n0e6cd6ansf8go1jm3vfv96iuqe1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
