@@ -17,7 +17,7 @@ const MyButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     width: '80%',
-    height: 40,
+    height: 50,
     borderRadius: 50,
     alignSelf: 'center',
     justifyContent: 'center',

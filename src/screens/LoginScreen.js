@@ -1,23 +1,22 @@
 import React, {useState} from 'react';
 import {
   Dimensions,
-  Image,
   ImageBackground,
   StyleSheet,
   Text,
   View,
   TextInput,
-  Button,
+  Image,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import CONST from '../constants';
 import MyButton from '../components/MyButton';
 const {width, height} = Dimensions.get('window');
-const LoginScreen = () => {
+const LoginScreen = ({Navigation}) => {
   const [confirm, setConfirm] = useState(null);
   const [mobile, setMobile] = useState('');
   const [otp, setOtp] = useState('');
-  const [isOtpScreen, setIsOtpScreen] = useState(false);
+  const [isOtpScreen, setIsOtpScreen] = useState(true);
 
   const singIn = (mobile) => {
     auth()
@@ -31,7 +30,6 @@ const LoginScreen = () => {
   };
 
   const verifyOTP = (otp) => {
-    console.log(otp);
     confirm
       .confirm(otp)
       .then((res) => {
@@ -40,19 +38,23 @@ const LoginScreen = () => {
       .catch((err) => {
         console.log('Wrong OTP!! Please enter correct OTP' + err);
       });
+    // () => Navigation.navigate('Home');
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        style={{
-          width: width,
-          height: height,
-          justifyContent: 'center',
-          paddingBottom: 40,
-          position: 'absolute',
-        }}
+        style={styles.ImageBackground}
         source={require('../images/bg3.jpg')}>
+        <Image
+          source={require('../images/logo1.png')}
+          style={{
+            width: width,
+            height: height * 0.35,
+            position: 'absolute',
+            top: height * 0.035,
+            alignSelf: 'center',
+          }}></Image>
         {isOtpScreen ? (
           <View>
             <TextInput
@@ -60,19 +62,23 @@ const LoginScreen = () => {
               value={otp}
               placeholder="Enter OTP"
               underlineColorAndroid={'transparent'}
-              style={{borderRadius: 30, borderWidth: 1}}
+              style={styles.otpInput}
             />
             <MyButton name="Submit" onPress={() => verifyOTP(otp)} />
           </View>
         ) : (
           <View>
-            <TextInput
-              onChangeText={(mob) => setMobile(mob)}
-              value={mobile}
-              placeholder="Enter number"
-              underlineColorAndroid={'transparent'}
-              style={{borderRadius: 30, borderWidth: 1}}
-            />
+            <View style={styles.numberBox}>
+              <Text style={styles.numberInput}> +91 |</Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={(mob) => setMobile(mob)}
+                value={mobile}
+                placeholder="Enter number"
+                underlineColorAndroid={'transparent'}
+                style={{fontSize: 20, fontWeight: '900', paddingLeft: 10}}
+              />
+            </View>
             <MyButton onPress={() => singIn(mobile)} name="Send OTP" />
           </View>
         )}
@@ -84,9 +90,38 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: CONST.backgroundColor,
+  },
+  otpInput: {
+    borderRadius: 2,
+    alignSelf: 'center',
+    width: '40%',
+    fontSize: 30,
+    fontWeight: '900',
+    borderWidth: 1,
+    padding: 5,
+    textAlign: 'center',
+  },
+  ImageBackground: {
+    height: height * 1.22,
+    paddingBottom: 20,
+    width: width,
+    justifyContent: 'flex-end',
+    flex: 1,
+  },
+  numberInput: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingLeft: 10,
+  },
+  numberBox: {
+    flexDirection: 'row',
+    borderRadius: 5,
+    borderWidth: 1,
+    width: '60%',
+    alignSelf: 'center',
   },
 });
 

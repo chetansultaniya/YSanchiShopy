@@ -5,7 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import OTPScreen from '../screens/OTPScreen';
 
 const Stack = createStackNavigator();
-const checker = true;
+const checker = false;
 const MainNavigation = () => {
   return (
     <Stack.Navigator>
